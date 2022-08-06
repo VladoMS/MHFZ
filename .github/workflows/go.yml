@@ -50,7 +50,7 @@ jobs:
       - name: Make published directory
         run: mkdir published
       - name: Move Artifact files
-        run: mv ./published mv $(ls --ignore=published ) ./published/
+        run: mv $(ls --ignore=published ) ./published/
         
       - name: Login to DockerHub
         uses: docker/login-action@v2
