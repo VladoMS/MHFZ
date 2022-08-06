@@ -62,6 +62,9 @@ jobs:
         with:
           push: true
           tags: vladoms/mhfz:latest
+          context: ./published
+          file: ./published/Dockerfile
+          
           
       - name: Display structure of downloaded files
         run: ls -R
