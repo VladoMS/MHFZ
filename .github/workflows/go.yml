@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 
@@ -14,8 +14,16 @@ jobs:
       - name: Docker Build Tag Publish
         uses: bitovi/github-actions-docker-publish@v1.0.2
         with:
-          checkout: false
-          image_tag: vladoms/mhfz:latest
-          docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
-          docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: vladoms/mhfz:latest
+          context: ./published
+          file: ./published/Dockerfile
+          
+          
+      - name: Display structure of downloaded files
+        run: ls -R
