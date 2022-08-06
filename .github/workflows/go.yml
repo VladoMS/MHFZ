@@ -47,8 +47,10 @@ jobs:
           name: Linux-amd64
       - name: Display structure of downloaded files
         run: ls -R
+      - name: Make published directory
+        run: mkdir published
       - name: Move Artifact files
-        run: mv ./ ./published
+        run: mv ./* ./published
         
       - name: Login to DockerHub
         uses: docker/login-action@v2
