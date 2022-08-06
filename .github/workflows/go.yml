@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 
@@ -47,6 +47,8 @@ jobs:
           name: Linux-amd64
       - name: Display structure of downloaded files
         run: ls -R
+      - name: Move Artifact files
+        run: mv ./ ./published
       - name: Docker Build Tag Publish
         # You may pin to the exact commit or the version.
         # uses: bitovi/github-actions-docker-publish@8db2834ce66baa4d849c7d87df3f47118233c993
@@ -56,4 +58,5 @@ jobs:
           image_tag: vladoms/mhfz:latest
           docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
           docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+      - name: Display structure of downloaded files
+        run: ls -R
